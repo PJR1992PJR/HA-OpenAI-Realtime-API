@@ -1,19 +1,16 @@
-ARG BUILD_FROM=ghcr.io/home-assistant/amd64-addon-base:14.0
-FROM ${BUILD_FROM}
+FROM python:3.11-slim
 
-RUN apk add --no-cache alsa-utils libstdc++ pulseaudio-utils jq curl
+# install system libs for audio (ALSA/PulseAudio)
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends libsndfile1 ca-certificates \
+  && rm -rf /var/lib/apt/lists/*
 
-RUN pip install --no-cache-dir \
-      websockets==12.0 \
-      sounddevice==0.4.6 \
-      numpy==1.26.4 \
-      rapidfuzz==3.7.0
+# bring in your Python deps
+RUN pip install --no-cache-dir openai sounddevice requests pvporcupine
 
-ENV PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1
-WORKDIR /app
-
+# copy your entrypoint and code
 COPY run.sh /run.sh
-COPY assistant.py /app/assistant.py
-RUN chmod a+x /run.sh
+COPY assistant.py /assistant.py
+RUN chmod +x /run.sh
 
-ENTRYPOINT ["/run.sh"]
+ENTRYPOINT [ "/run.sh" ]
