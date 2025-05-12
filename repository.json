@@ -1,0 +1,6 @@
+{
+  "name": "HA OpenAI Realtime API",
+  "url": "https://github.com/PJR1992PJR/HA-OpenAI-Realtime-API",
+  "maintainer": "@PJR1992PJR",
+  "addons": ["openai_sts_assistant"]
+}
