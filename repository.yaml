@@ -1,6 +1,3 @@
-# repository.yaml
 name: OpenAI STS Voice Assistant Repo
-maintainer: PJR1992PJR
 url: https://github.com/PJR1992PJR/HA-OpenAI-Realtime-API
-add-ons:
-  - openai_sts_assistant
+maintainer: PJR1992PJR
