@@ -3,13 +3,21 @@
   "version": "1.0.1",
   "slug": "openai_sts_assistant",
   "description": "Streaming speech-to-speech voice assistant powered by OpenAI, with Home Assistant integration.",
-  "url": "https://github.com/PJR1992PJR/HA-OpenAI-Realtime-API/tree/main/openai_sts_assistant",
   "startup": "application",
+  "boot": "auto",
   "host_network": true,
-  "ports": { "5123/tcp": 5123 },
-  "devices": ["/dev/snd:/dev/snd:rwm"],
-  "image": "ghcr.io/pjr1992/ha-openai-sts-assistant-{arch}",
-  "arch": ["aarch64","amd64","armv7","armv8"],
+  "devices": [
+    "/dev/snd/controlC0",
+    "/dev/snd/pcmC0D0p",
+    "/dev/snd/pcmC0D0c",
+    "/dev/snd/seq"
+  ],
+  "arch": [
+    "aarch64",
+    "amd64",
+    "armv7",
+    "armv8"
+  ],
   "options": {
     "openai_api_key": "",
     "wake_word": "jarvis",
@@ -29,8 +37,11 @@
     "log_level": "list(trace|debug|info|warning|error|critical)?"
   },
   "environment": {
-    "HASS_URL": "http://supervisor/core",
-    "HASS_TOKEN": "![secret hass_token]"
+    "HASS_URL": "http://supervisor/core/api",
+    "HASS_TOKEN": "!secret hass_token"
   },
-  "privileged": ["SYS_RAWIO","DAC_READ_SEARCH"]
+  "privileged": [
+    "SYS_RAWIO",
+    "DAC_READ_SEARCH"
+  ]
 }
