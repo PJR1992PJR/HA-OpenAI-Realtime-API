@@ -1,6 +1,6 @@
-{
-  "name": "HA OpenAI Realtime API",
-  "slug": "openai_sts_assistant",
-  "description": "Streaming speech-to-speech voice assistant powered by OpenAI realtime API",
-  "url": "https://raw.githubusercontent.com/PJR1992PJR/HA-OpenAI-Realtime-API/main/addons/openai_sts_assistant/config.json"
-}
+# repository.yaml
+name: OpenAI STS Voice Assistant Repo
+maintainer: PJR1992PJR
+url: https://github.com/PJR1992PJR/HA-OpenAI-Realtime-API
+add-ons:
+  - openai_sts_assistant
