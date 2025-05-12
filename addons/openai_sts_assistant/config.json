@@ -2,27 +2,17 @@
   "name": "OpenAI STS Voice Assistant",
   "version": "1.0.1",
   "slug": "openai_sts_assistant",
-  "description": "Streaming speech-to-speech voice assistant powered by OpenAI, with Home Assistant integration.",
+  "description": "Streaming speech-to-speech assistant via OpenAI Realtime API",
   "startup": "application",
   "boot": "auto",
   "host_network": true,
-  "devices": [
-    "/dev/snd/controlC0",
-    "/dev/snd/pcmC0D0p",
-    "/dev/snd/pcmC0D0c",
-    "/dev/snd/seq"
-  ],
-  "arch": [
-    "aarch64",
-    "amd64",
-    "armv7",
-    "armv8"
-  ],
+  "homeassistant_api": true,
+  "audio": true,
+  "arch": ["aarch64","amd64","armv7"],
   "options": {
     "openai_api_key": "",
     "wake_word": "jarvis",
     "model": "gpt-4o-realtime-preview",
-    "assistant_voice": "alloy",
     "sample_rate": 24000,
     "language": "en",
     "log_level": "info"
@@ -31,17 +21,12 @@
     "openai_api_key": "str",
     "wake_word": "str",
     "model": "list(gpt-4o-realtime-preview|gpt-4o-mini-realtime)",
-    "assistant_voice": "str?",
     "sample_rate": "int(16000|24000)",
     "language": "str?",
     "log_level": "list(trace|debug|info|warning|error|critical)?"
   },
   "environment": {
-    "HASS_URL": "http://supervisor/core/api",
-    "HASS_TOKEN": "!secret hass_token"
+    "HASS_URL": "http://supervisor/core/api"
   },
-  "privileged": [
-    "SYS_RAWIO",
-    "DAC_READ_SEARCH"
-  ]
+  "privileged": ["SYS_RAWIO","DAC_READ_SEARCH"]
 }
